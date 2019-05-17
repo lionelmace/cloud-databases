@@ -121,7 +121,7 @@ More information on the Resource Controller API is found in its [API Reference](
 
 ## Provisioning with Terraform
 
-If you use [Terraform](https://www.terraform.io/) to manage your infrastructure, the [{{site.data.keyword.cloud_notm}} provider for Terraform](https://ibm-cloud.github.io/tf-ibm-docs/) supports provisioning {{site.data.keyword.databases-for-elasticsearch}}. 
+If you use [Terraform](/docs/terraform?topic=terraform-about) to manage your infrastructure, the [{{site.data.keyword.cloud_notm}} provider for Terraform](/docs/terraform?topic=terraform-getting-started) supports provisioning {{site.data.keyword.databases-for-elasticsearch}}. 
 
 Example configuration -
 ```
@@ -142,13 +142,13 @@ The `name`, `location`, `service`, and `plan` fields are all required. The `reso
 
 You can send any needed [additional parameters](#list-of-additional-parameters) in the `parameters` field as a JSON object.
 
-More information about this specific {{site.data.keyword.cloud_notm}} provider configuration is available under the [Cloud Foundry Resources, `resource_instance`](https://ibm-cloud.github.io/tf-ibm-docs/v0.14.0/r/resource_instance.html) documentation.
+More information about this specific {{site.data.keyword.cloud_notm}} provider configuration is available in the [github](https://ibm-cloud.github.io/tf-ibm-docs/v0.16.1/d/database.html) documentation.
 
 ## List of Additional Parameters
 
-* `backup_id`- A CRN of a backup resource to restore from. The backup must have been created by a database deployment with the same service ID. The backup is loaded after provisioning and the new deployment starts up that uses that data. A backup CRN is in the format `crn:v1:<...>:backup:<uuid>`. If omitted, the database is provisioned empty. This parameter cannot be set with a **version** parameter
-* `version` - The version of the database to be provisioned. If omitted, the database is created with the most recent major and minor version. This parameter cannot be set with a **backup_id** parameter.
-* `key_protect_key` - A CRN that references a [Key Protect](/docs/services/cloud-databases?topic=cloud-databases-key-protect) key, which is then used for disk encryption.
+* `backup_id`- A CRN of a backup resource to restore from. The backup must have been created by a database deployment with the same service ID. The backup is loaded after provisioning and the new deployment starts up that uses that data. A backup CRN is in the format `crn:v1:<...>:backup:<uuid>`. If omitted, the database is provisioned empty.
+* `version` - The version of the database to be provisioned. If omitted, the database is created with the most recent major and minor version.
+* `key_protect_key` - The CRN of a [Key Protect key](/docs/services/key-protect?topic=key-protect-view-keys), which is then used for disk encryption. A key protect CRN is in the format `crn:v1:<...>:key:<id>`.
 * `members_memory_allocation_mb` -  Total amount of memory to be shared between the database members within the database. For example, if the value is "6144" then the two database members get 6 GB of RAM between them, giving 2 GB of RAM per member. If omitted, the default value is used; "3072".
 * `members_disk_allocation_mb` - Total amount of disk to be shared between the database members within the database. For example, if the value is "30720" then the  database members get 30 GB of disk between them, giving 10 GB of disk per member. If omitted, the default value is used; "3072".
 * `service-endpoints` - Selects the types [Service Endpoints](/docs/services/cloud-databases?topic=cloud-databases-service-endpoints) supported on your deployment. Options are `public`, `private`, or `public-and-private`. If omitted, the default is `public`.
