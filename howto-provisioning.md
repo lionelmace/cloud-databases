@@ -129,21 +129,23 @@ Example configuration -
 data "ibm_resource_group" "group" {
   name = "default"
 }
-resource "ibm_resource_instance" "resource_instance" {
+resource "ibm_database" "resource_instance" {
   name              = "example-terraform-elasticsearch"
   location          = "us-south"
   service           = "databases-for-elasticsearch"
   plan              = "standard"
   resource_group_id = "${data.ibm_resource_group.group.id}"
-  parameters = {}
+
+  members_memory_allocation_mb = 2048
+  members_disk_allocation_mb = 20480
 }
 ```
 
 The `name`, `location`, `service`, and `plan` fields are all required. The `resource_group_id` is not required, and it uses the default resource group if not supplied.
 
-You can send any needed [additional parameters](#list-of-additional-parameters) in the `parameters` field as a JSON object.
+The members `members_memory_allocation_mb` and `members_disk_allocation_mb` are optional. You can send any needed [additional parameters](#list-of-additional-parameters).
 
-More information about this specific {{site.data.keyword.cloud_notm}} provider configuration is available in the [github](https://ibm-cloud.github.io/tf-ibm-docs/v0.16.1/d/database.html) documentation.
+More information about this specific {{site.data.keyword.cloud_notm}} provider configuration is available in the [https://cloud.ibm.com/docs/terraform?topic=terraform-databases-resources](https://cloud.ibm.com/docs/terraform?topic=terraform-databases-resources) documentation.
 
 ## List of Additional Parameters
 
